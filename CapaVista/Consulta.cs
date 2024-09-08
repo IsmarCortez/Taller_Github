@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaControlador;
+using System.Windows.Forms;
+using CapaControlador;
 
 namespace CapaVista
 {
@@ -31,6 +33,13 @@ namespace CapaVista
         /****************************Fernando Jose Garcia De León****************************************************************/
         /*****CONSULTAR ******/
 
+        public void actualizardatagridview()
+        {
+            DataTable dt = cn.llenarTbl(tabla);
+            Dgv_consulta.DataSource = dt;
+        }
+
+
         /************************************************************************************************************************/
 
 
@@ -38,7 +47,7 @@ namespace CapaVista
         /*****CONSULTAR ******/
         private void BtnConsulta_Click(object sender, EventArgs e)
         {
-            
+            actualizardatagridview();
         }
         /*************************************************************************************************************************/
 
@@ -89,9 +98,10 @@ namespace CapaVista
 
         /**********************************Kateryn Johann De Leon***********************************************************/
         /**********************************REFRESCAR************************************************************************/
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            actualizardatagridview();
         }
         /*******************************************************************************************************************/
 
