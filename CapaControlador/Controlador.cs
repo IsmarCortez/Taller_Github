@@ -15,6 +15,13 @@ namespace CapaControlador
 
         /*************Fernando Jose Garcia de León********************************/
         /*************Consulta****************************************************/
+        public DataTable llenarTbl(String tabla)
+        {
+            OdbcDataAdapter dt = sn.llenarTbl(tabla);
+            DataTable table = new DataTable();
+            dt.Fill(table);
+            return table;
+        }
 
         /************************************************************************/
 
