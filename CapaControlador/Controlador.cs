@@ -39,7 +39,7 @@ namespace CapaControlador
         /*********************Eliminar vehiculo**********************************/
         public void eliminar(int llave)
         {
-
+            sn.eliminar(llave);
         }
         /************************************************************************/
 
