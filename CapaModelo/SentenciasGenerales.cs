@@ -58,7 +58,12 @@ namespace CapaModelo
 
         /**********************************Marco Alejandro Monroy***********************************************************/
         /**********************************Modificar************************************************************************/
-
+        public string getModificarQuery(int id, string n, string p, string d, int es)
+        {
+            string sql = "UPDATE vehiculos SET modelo='" + n + "', tipo='" + p + "',  fabricante='" + d + "',  estado_vehiculo=" + es + " WHERE id_vehiculo=" + id + " ";
+            Console.WriteLine(sql);
+            return sql;
+        }
         /*******************************************************************************************************************/
     }
 }
