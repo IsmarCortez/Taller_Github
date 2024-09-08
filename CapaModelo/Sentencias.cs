@@ -50,7 +50,8 @@ namespace CapaModelo
         /**********************************Modificar************************************************************************/
         public void modificar(int id, string n, string p, string d, int es)
         {
-
+            string query = this.getModificarQuery(id, n, p, d, es);
+            this.insertarSQL(query);
         }
         /*******************************************************************************************************************/
 

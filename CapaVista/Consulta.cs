@@ -150,7 +150,23 @@ namespace CapaVista
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                Controlador ctriv = new Controlador();
+                string codigotext = txt_codigo.Text;
+                int id = Convert.ToInt32(codigotext);
+                string n = txt_modelo.Text;
+                string p = txt_tipo.Text;
+                string d = (string)cmb_auto.SelectedItem;
+                string estadotxt = txt_estadoVehiculo.Text;
+                int es = Convert.ToInt32(estadotxt);
+                ctriv.modificar(id, n, p, d, es);
+                MessageBox.Show("Registro Modificado Correctamente");
+            }
+            catch
+            {
+                MessageBox.Show("Registro No Modificado");
+            }
         }
         /*******************************************************************************************************************/
 
