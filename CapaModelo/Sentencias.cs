@@ -15,6 +15,12 @@ namespace CapaModelo
 
         /*************************Fernando Jose Garcia De Leon*********************************************************/
         /*************************Consulta*****************************************************************************/
+        public OdbcDataAdapter llenarTbl(string tabla)
+        {
+            string sql = "SELECT* FROM " + tabla + ";";
+            OdbcDataAdapter dataTable = new OdbcDataAdapter(sql, con.conexion());
+            return dataTable;
+        }
 
         /**************************************************************************************************************/
 
@@ -23,7 +29,8 @@ namespace CapaModelo
         /*************************Guardar******************************************************************************/
         public void guardar(int codigo, string modelo, string tipo, string fabricante, int estadovehiculo)
         {
-
+            string query = this.getQuery(codigo, modelo, tipo, fabricante, estadovehiculo);
+            this.insertarSQL(query);
         }
 
         /***************************************************************************************************************/

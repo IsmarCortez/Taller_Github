@@ -18,7 +18,12 @@ namespace CapaModelo
 
         /**********************************Brandon Alejandro Boch Lopez*********************************************/
         /**********************************GetQuery*****************************************************************/
-
+        public string getQuery(int codigo, string modelo, string tipo, string fabricante, int estadovehiculo)
+        {
+            string sql = "insert into vehiculos(id_vehiculo, modelo, tipo, fabricante, estado_vehiculo) values('" + codigo + "', '" + modelo + "', '" + tipo + "', '" + fabricante + "', '" + estadovehiculo + "')";
+            Console.WriteLine(sql);
+            return sql;
+        }
 
         /*************************************************************************************************************/
 

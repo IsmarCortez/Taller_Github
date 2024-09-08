@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaControlador;
+using System.Windows.Forms;
+using CapaControlador;
 
 namespace CapaVista
 {
@@ -31,6 +33,13 @@ namespace CapaVista
         /****************************Fernando Jose Garcia De León****************************************************************/
         /*****CONSULTAR ******/
 
+        public void actualizardatagridview()
+        {
+            DataTable dt = cn.llenarTbl(tabla);
+            Dgv_consulta.DataSource = dt;
+        }
+
+
         /************************************************************************************************************************/
 
 
@@ -38,7 +47,7 @@ namespace CapaVista
         /*****CONSULTAR ******/
         private void BtnConsulta_Click(object sender, EventArgs e)
         {
-            
+            actualizardatagridview();
         }
         /*************************************************************************************************************************/
 
@@ -52,7 +61,27 @@ namespace CapaVista
         /************************************INGRESAR******************************************************************************/
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
+            string codigotext = txt_codigo.Text;
+            int codigo = Convert.ToInt32(codigotext);
+            string modelo = txt_modelo.Text;
+            string tipo = txt_tipo.Text;
+            string fabricante = (string)cmb_auto.SelectedItem;
+            string estado = txt_estadoVehiculo.Text;
+            int estadovehiculo = Convert.ToInt32(estado);
 
+            try
+
+            {
+
+                cn.saveVehiculo(codigo, modelo, tipo, fabricante, estadovehiculo);
+                MessageBox.Show($"Datos recibidos: Código: {codigo}, Nombre: {modelo}, Puesto: {tipo}, Departamento: {fabricante}, Estado: {estadovehiculo}");
+
+                MessageBox.Show("Registro Agregado correctamente :)");
+            }
+            catch
+            {
+                MessageBox.Show("Registro No ingresado");
+            }
         }
         /**************************************************************************************************************************/
 
@@ -90,9 +119,10 @@ namespace CapaVista
 
         /**********************************Kateryn Johann De Leon***********************************************************/
         /**********************************REFRESCAR************************************************************************/
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            actualizardatagridview();
         }
         /*******************************************************************************************************************/
 
