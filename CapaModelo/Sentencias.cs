@@ -29,7 +29,8 @@ namespace CapaModelo
         /*************************Guardar******************************************************************************/
         public void guardar(int codigo, string modelo, string tipo, string fabricante, int estadovehiculo)
         {
-
+            string query = this.getQuery(codigo, modelo, tipo, fabricante, estadovehiculo);
+            this.insertarSQL(query);
         }
 
         /***************************************************************************************************************/
