@@ -52,7 +52,27 @@ namespace CapaVista
         /************************************INGRESAR******************************************************************************/
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
+            string codigotext = txt_codigo.Text;
+            int codigo = Convert.ToInt32(codigotext);
+            string modelo = txt_modelo.Text;
+            string tipo = txt_tipo.Text;
+            string fabricante = (string)cmb_auto.SelectedItem;
+            string estado = txt_estadoVehiculo.Text;
+            int estadovehiculo = Convert.ToInt32(estado);
 
+            try
+
+            {
+
+                cn.saveVehiculo(codigo, modelo, tipo, fabricante, estadovehiculo);
+                MessageBox.Show($"Datos recibidos: Código: {codigo}, Nombre: {modelo}, Puesto: {tipo}, Departamento: {fabricante}, Estado: {estadovehiculo}");
+
+                MessageBox.Show("Registro Agregado correctamente :)");
+            }
+            catch
+            {
+                MessageBox.Show("Registro No ingresado");
+            }
         }
         /**************************************************************************************************************************/
 
