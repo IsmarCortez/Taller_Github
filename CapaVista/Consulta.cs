@@ -30,6 +30,11 @@ namespace CapaVista
 
         /****************************Fernando Jose Garcia De León****************************************************************/
         /*****CONSULTAR ******/
+        public void actualizardatagridview()
+        {
+            DataTable dt = cn.llenarTbl(tabla);
+            Dgv_consulta.DataSource = dt;
+        }
 
         /************************************************************************************************************************/
 
@@ -38,7 +43,7 @@ namespace CapaVista
         /*****CONSULTAR ******/
         private void BtnConsulta_Click(object sender, EventArgs e)
         {
-            
+            actualizardatagridview();
         }
         /*************************************************************************************************************************/
 
