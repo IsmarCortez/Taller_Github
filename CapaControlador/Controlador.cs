@@ -30,7 +30,7 @@ namespace CapaControlador
         /*********************Guardar Vehiculo***********************************/
         public void saveVehiculo(int codigo, string modelo, string tipo, string fabricante, int estadovehiculo)
         {
-
+            sn.guardar(codigo, modelo, tipo, fabricante, estadovehiculo);
         }
         /************************************************************************/
 
