@@ -16,13 +16,12 @@ namespace CapaModelo
             this.conn = new Conexion();
         }
 
+        /**********************************Brandon Alejandro Boch Lopez*********************************************/
+        /**********************************GetQuery*****************************************************************/
 
-        public string getQuery(int codigo, string nombre, string puesto, string departamento, int estado)
-        {
-        string sql = "insert into empleados(codigo_empleado, nombre_completo, puesto, departamento, estado)values('" + codigo + "', '" + nombre + "', '" + puesto + "', '" + departamento + "', '" + estado + "')";
-        Console.WriteLine(sql);
-        return sql;
-        }
+
+        /*************************************************************************************************************/
+
 
         public void insertarSQL(string query)
         {
@@ -37,18 +36,16 @@ namespace CapaModelo
             }
         }
 
-        public string eliminarQuery(int llave)
-        {
-            string sql = "DELETE FROM empleados WHERE codigo_empleado = " + llave + ";";
-            Console.WriteLine(sql);
-            return sql;
-        }
 
-        public string getModificarQuery(int id, string n, string p, string d, int es)
-        {
-            string sql = "UPDATE empleados SET nombre_completo='" + n + "', puesto='" + p + "',  departamento='" + d + "',  estado=" + es + " WHERE codigo_empleado=" + id + " ";
-            Console.WriteLine(sql);
-            return sql;
-        }
+        /*************************Gabriela Alejandra Suc Gomez*********************************************************/
+        /*************************Eliminar******************************************************************************/
+
+        /***************************************************************************************************************/
+
+
+        /**********************************Marco Alejandro Monroy***********************************************************/
+        /**********************************Modificar************************************************************************/
+
+        /*******************************************************************************************************************/
     }
 }

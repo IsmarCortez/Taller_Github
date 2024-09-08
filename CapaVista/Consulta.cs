@@ -13,111 +13,168 @@ namespace CapaVista
 {
     public partial class Consulta : Form
     {
-        String tabla = "empleados";
+        String tabla = "vehiculos";
         Controlador cn = new Controlador();
         public Consulta()
         {
             InitializeComponent();
+            string tabla = "vehiculos";
+            string campo1 = "fabricante";
+
+
+            llenarse(tabla, campo1);
+
+
         }
 
-        public void actualizardatagridview()
-        {
-            DataTable dt = cn.llenarTbl(tabla);
-            Dgv_consulta.DataSource = dt;
-        }
 
+        /****************************Fernando Jose Garcia De León****************************************************************/
+        /*****CONSULTAR ******/
+
+        /************************************************************************************************************************/
+
+
+        /**********Fernando Jose Garcia De León**********************************************************************************/
+        /*****CONSULTAR ******/
         private void BtnConsulta_Click(object sender, EventArgs e)
         {
-            actualizardatagridview();
+            
         }
+        /*************************************************************************************************************************/
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
+
+        /**********************************Brandon Alejandro Boch Lopez************************************************************/
+        /************************************INGRESAR******************************************************************************/
         private void btn_ingresar_Click(object sender, EventArgs e)
         {
-            string codigotext = txt_codigo.Text;
-            int codigo = Convert.ToInt32(codigotext);
-            string nombre = txt_nombre.Text;
-            string puesto = txt_puesto.Text;
-            string departamento = txt_departamento.Text;
-            string estadotexto = txt_estado.Text;
-            int estado = Convert.ToInt32(estadotexto);
 
-            try
-            {
-                cn.saveEmpleado(codigo, nombre, puesto, departamento, estado);
-                MessageBox.Show("Registro Agregado correctamente :)");
-            }
-            catch
-            {
-                MessageBox.Show("Registro No ingresado");
-            }
         }
+        /**************************************************************************************************************************/
 
+
+        /*****************************************Gabriela Alejandra Suc Gomez*****************************************************/
+        /************************************ELIMINAR******************************************************************************/
         private void button2_Click(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show("¿Esta seguro que desea eliminar este registro?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Controlador ctriv = new Controlador();
-                if (Dgv_consulta.SelectedRows.Count > 0)
-                {
-                    // Obtener la primera fila seleccionada
-                    DataGridViewRow selectedRow = Dgv_consulta.SelectedRows[0];
-
-                    // Obtiene el valor de la primera celda de esa fila y la convierte a entero
-                    if (selectedRow.Cells[0].Value != null)
-                    {
-                        int llave = Convert.ToInt32(selectedRow.Cells[0].Value);
-                        ctriv.eliminar(llave);
-                        MessageBox.Show("Eliminado Exitosamente");
-                    }
-                }
-                else
-                {
-                    // Manejar el caso en el que no hay filas seleccionadas
-                    MessageBox.Show("No hay filas seleccionadas en el DataGridView.");
-                }
-            }
+           
         }
+        /*******************************************************************************************************************/
 
+
+        /**********************************Kateryn Johann De Leon***********************************************************/
+        /**********************************REFRESCAR************************************************************************/
         private void button1_Click(object sender, EventArgs e)
         {
-            actualizardatagridview();
+            
         }
+        /*******************************************************************************************************************/
 
         private void Dgv_consulta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             txt_codigo.Text = Dgv_consulta.CurrentRow.Cells[0].Value.ToString();
-            txt_nombre.Text = Dgv_consulta.CurrentRow.Cells[1].Value.ToString();
-            txt_puesto.Text = Dgv_consulta.CurrentRow.Cells[2].Value.ToString();
-            txt_departamento.Text = Dgv_consulta.CurrentRow.Cells[3].Value.ToString();
-            txt_estado.Text = Dgv_consulta.CurrentRow.Cells[4].Value.ToString();
-       
+            txt_modelo.Text = Dgv_consulta.CurrentRow.Cells[1].Value.ToString();
+            txt_tipo.Text = Dgv_consulta.CurrentRow.Cells[2].Value.ToString();
+
+
+            //cmb_auto = Dgv_consulta.CurrentRow.Cells[3].Value.ToString();
+
+            // Convertir el valor de la celda en el valor correspondiente del ComboBox
+            string autoValue = Dgv_consulta.CurrentRow.Cells[3].Value.ToString();
+
+            // Si tu ComboBox tiene valores asociados, selecciona el ítem correspondiente
+            cmb_auto.SelectedItem = autoValue; // Esto selecciona el valor del ComboBox que coincida con autoValue
+
+            txt_estadoVehiculo.Text = Dgv_consulta.CurrentRow.Cells[4].Value.ToString();
+
         }
+
+        /**********************************Marco Alejandro Monroy***********************************************************/
+        /**********************************Modificar************************************************************************/
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
+            
+        }
+        /*******************************************************************************************************************/
+
+
+        /*********************Ismar Leonel Cortez Sanchez -0901-21-560***********************/
+        /***********************Combo box inteligente*************************************/
+        public void llenarse(string tabla, string campo1)
+        {
+
+
+            string tbl = tabla;
+            string cmp1 = campo1;
+            //            string cmp2 = campo2;
+
+
+
+            cmb_auto.ValueMember = "fabricante";
+            cmb_auto.DisplayMember = "vehiculos";
+
+            string[] items = cn.items(tabla, campo1);
+            /*Accede a la capa controlador en donde los 3 parametros*/
+            /*Aqui viene a parar de controlador*/
+
+            /*Con este for se recorre lo del array obtenido*/
+
+            /*
+             vista -> controlador -> modelos
+             vista <- controlador <- modelos
+ 
+
+             */
+
+            for (int i = 0; i < items.Length; i++)
             {
-                Controlador ctriv = new Controlador();
-                string codigotext = txt_codigo.Text;
-                int id = Convert.ToInt32(codigotext);
-                string n = txt_nombre.Text;
-                string p = txt_puesto.Text;
-                string d = txt_departamento.Text;
-                string estadotxt = txt_estado.Text;
-                int es = Convert.ToInt32(estadotxt);
-                ctriv.modificar(id, n, p, d, es);
-                MessageBox.Show("Registro Modificado Correctamente");
+                if (items[i] != null)
+                {
+                    if (items[i] != "")
+                    {
+                        cmb_auto.Items.Add(items[i]);
+                    }
+                }
+
             }
-            catch
+
+            /*se guardan los datos que vengan.*/
+            /*Es para guardarla y que sirvan como referencia, y
+             se tiene la coleccion*/
+
+            var dt2 = cn.enviar(tabla, campo1);
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in dt2.Rows)
             {
-                MessageBox.Show("Registro No Modificado");
+
+                coleccion.Add(Convert.ToString(row[campo1]));
+
+
             }
+
+
+            cmb_auto.AutoCompleteCustomSource = coleccion;
+            cmb_auto.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmb_auto.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+
+        }
+        /********************************************************************************************/
+
+        private void cmb_auto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
