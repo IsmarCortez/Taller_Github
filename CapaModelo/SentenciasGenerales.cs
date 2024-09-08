@@ -40,6 +40,14 @@ namespace CapaModelo
         /*************************Gabriela Alejandra Suc Gomez*********************************************************/
         /*************************Eliminar******************************************************************************/
 
+        public string eliminarQuery(int llave)
+        {
+            string sql = "DELETE FROM vehiculos WHERE id_vehiculo = " + llave + ";";
+            Console.WriteLine(sql);
+            return sql;
+        }
+
+
         /***************************************************************************************************************/
 
 
